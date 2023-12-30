@@ -1,0 +1,26 @@
+#服务信息的配置
+server:
+  port: 1314
+spring:
+  #给项目来个名字
+  application:
+    name: rabbitmq-consumer
+  #配置rabbitMq 服务器
+#  rabbitmq:
+#    host: 127.0.0.1
+#    port: 5672
+#    username: root
+#    password: root
+    #虚拟host 可以不设置,使用server默认host
+    #virtual-host: JCcccHost
+#redis配置
+#  redis:
+#    host: 127.0.0.1
+#    requirePass: 'jy321'
+#    pool:
+#      max-active: 8
+#      max-idle: 8
+#      max-wait: -1
+#      min-idle: 0
+#    port: 6379
+#    timeout: 30000
