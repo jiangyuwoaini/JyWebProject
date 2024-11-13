@@ -4,23 +4,27 @@ server:
 spring:
   #给项目来个名字
   application:
-    name: rabbitmq-consumer
+    name: 落霞与孤鹜齐飞
   #配置rabbitMq 服务器
-#  rabbitmq:
-#    host: 127.0.0.1
-#    port: 5672
-#    username: root
-#    password: root
-    #虚拟host 可以不设置,使用server默认host
-    #virtual-host: JCcccHost
+rabbitmq:
+  host: 127.0.0.1
+  port: 5672
+  username: root
+  password: root
+  publisher-confirm-type: correlated #1、simple:同步等待confirm结果,直到超时 2、correlated:异步回调,次你故意ConfirmCallback,MQ返回结果时会回调这个ComfirmCallback
+  publisher-returns: true #开启publisher-returns
+  #virtual-host: / #虚拟host 可以不设置,使用server默认host
+  template:
+    mandatory: true # 开启消息路由失败时的策略.turn,则调用ReturnCallback; false:直接丢弃数据
 #redis配置
-#  redis:
-#    host: 127.0.0.1
+  redis:
+    host: 127.0.0.1
 #    requirePass: 'jy321'
-#    pool:
-#      max-active: 8
-#      max-idle: 8
-#      max-wait: -1
-#      min-idle: 0
-#    port: 6379
-#    timeout: 30000
+    pool:
+      max-active: 8
+      max-idle: 8
+      max-wait: -1
+      min-idle: 0
+    port: 6379
+    timeout: 30000
+

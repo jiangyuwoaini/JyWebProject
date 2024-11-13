@@ -1,4 +1,4 @@
-package com.lblz.mq.receiver;
+package com.lblz.listener.mq;
 
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -8,7 +8,7 @@ import java.util.Map;
 
 /**
  * @author lblz
- * @description mq的监听器
+ * @description mq的监听器 监听一对一,或者一对多
  * @date 2022/4/10 13:11
  */
 @Component

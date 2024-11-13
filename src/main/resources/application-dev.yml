@@ -1,0 +1,22 @@
+version: '3'
+services:
+  nginx:
+    container_name: web1
+    hostname: nginx
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 1216:80
+      - 1217:443
+    networks:
+      lnmp:
+        ipv4_address: 172.18.0.10
+    volumes:
+      - ./wwwroot:/usr/local/src/nginx/html
+networks:
+  lnmp:
+    driver: bridge
+    ipam:
+      config:
+      - subnet: 172.18.0.0/16

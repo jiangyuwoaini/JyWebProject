@@ -2,6 +2,7 @@ package com.lblz.controller;
 
 import com.lblz.common.http.ApiHttpResult;
 import com.lblz.common.utils.RedisUtils;
+import com.lblz.entity.enums.ApiHttpStateCodeEnums;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -9,7 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Formatter;
 import java.util.List;
 import java.util.Random;
 
@@ -42,6 +47,11 @@ public class ApiCommonController {
             list.add(object.toString());
         }
         return new ApiHttpResult<List<String>>().success(list);
+    }
+
+    @RequestMapping(value = "/test1",method = {RequestMethod.GET})
+    public ApiHttpResult test1()  {
+        return ApiHttpResult.success("请求成功,当前时间:\n"+LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")), ApiHttpStateCodeEnums.SUCCESS.getMessage());
     }
 
 }
