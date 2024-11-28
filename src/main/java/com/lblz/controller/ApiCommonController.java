@@ -4,6 +4,7 @@ import com.lblz.common.http.ApiHttpResult;
 import com.lblz.common.utils.RedisUtils;
 import com.lblz.entity.enums.ApiHttpStateCodeEnums;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,6 +53,20 @@ public class ApiCommonController {
     @RequestMapping(value = "/test1",method = {RequestMethod.GET})
     public ApiHttpResult test1()  {
         return ApiHttpResult.success("请求成功,当前时间:\n"+LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")), ApiHttpStateCodeEnums.SUCCESS.getMessage());
+    }
+
+    /**
+     * @Cacheable：用于标注方法，表明该方法的返回值需要缓存。
+     * @CachePut：用于标注方法，每次调用都会更新缓存。
+     * @CacheEvict：用于标注方法，用来清除缓存。
+     * @Caching：可以组合多个缓存操作。
+     * @return
+     */
+    @Cacheable(cacheNames = "cache1")
+    @RequestMapping(value = "/test2",method = {RequestMethod.GET})
+    public ApiHttpResult test2()  {
+        System.out.println("具体命中调用过程-----");
+        return ApiHttpResult.success("请求成功", ApiHttpStateCodeEnums.SUCCESS.getMessage());
     }
 
 }
